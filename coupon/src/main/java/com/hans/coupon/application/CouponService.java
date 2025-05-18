@@ -25,7 +25,7 @@ public class CouponService {
         String couponRemainingRedisKey = RedisKeyFactory.makeCouponRemainingKey(savedCoupon.getId());
         boolean isSuccess = redisDataService.setAndVerify(couponRemainingRedisKey, couponCreateRequestDto.getInitialCount());
         if (!isSuccess) {
-            throw new RuntimeException("Redis 저장 실패");
+            throw new RuntimeException("Redis 저장 실패.");
         }
         return CouponFactory.createResponseDto(savedCoupon);
     }
