@@ -1,7 +1,6 @@
 package com.hans.coupon.ui;
 
 import com.hans.coupon.application.CouponService;
-import com.hans.coupon.domain.Coupon;
 import com.hans.coupon.ui.dto.CouponCreateRequestDto;
 import com.hans.coupon.ui.dto.CouponResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ public class CouponController {
 
     @PostMapping
     public ResponseEntity<CouponResponseDto> create(@RequestBody CouponCreateRequestDto couponCreateRequestDto) {
-        CouponResponseDto couponResponseDto = couponService.save(couponCreateRequestDto);
+        CouponResponseDto couponResponseDto = couponService.create(couponCreateRequestDto);
         return new ResponseEntity<>(couponResponseDto, HttpStatus.CREATED);
     }
 

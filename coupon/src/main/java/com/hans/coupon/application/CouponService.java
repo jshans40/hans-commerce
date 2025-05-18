@@ -19,13 +19,13 @@ public class CouponService {
     private final RedisDataService redisDataService;
 
     @Transactional
-    public CouponResponseDto save(CouponCreateRequestDto couponCreateRequestDto) {
+    public CouponResponseDto create(CouponCreateRequestDto couponCreateRequestDto) {
         Coupon savedCoupon = couponRepository.save(CouponFactory.create(couponCreateRequestDto));
 
         String couponRemainingRedisKey = RedisKeyFactory.makeCouponRemainingKey(savedCoupon.getId());
         boolean isSuccess = redisDataService.setAndVerify(couponRemainingRedisKey, couponCreateRequestDto.getInitialCount());
         if (!isSuccess) {
-            throw new RuntimeException("Redis 저장 실패.");
+            throw new RuntimeException("Redis 저장 실패");
         }
         return CouponFactory.createResponseDto(savedCoupon);
     }
