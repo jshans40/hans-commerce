@@ -24,4 +24,5 @@ public class CouponController {
         return new ResponseEntity<>(couponResponseDto, HttpStatus.CREATED);
     }
 
+
 }
